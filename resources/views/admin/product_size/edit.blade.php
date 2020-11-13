@@ -5,13 +5,13 @@
 
         <div class="row">
  <div class="col-md-6">
-@foreach ($product_categories as $product_category)
- <form id="service_add" method="POST" enctype="multipart/form-data" action="{{route('product.category.update',$product_category->id)}}" >
+@foreach ($product_sizes as $product_size)
+ <form id="service_add" method="POST" enctype="multipart/form-data" action="{{route('product.size.update',$product_size->id)}}" >
     @csrf
     <div class="form-group">
-        <label for="title">Product category name</label>
+        <label for="title">Product Size</label>
         <input type="text" class="form-control form-control-rounded" id="title"
-    placeholder="Enter Category Name" name="product_category" value="{{$product_category->product_categories}}">
+    placeholder="Enter Category Name" name="product_size" value="{{$product_size->product_sizes}}">
     </div>
 
 

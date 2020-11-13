@@ -12,4 +12,3 @@ class Truck extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes,UsesUUID;
 }
-web

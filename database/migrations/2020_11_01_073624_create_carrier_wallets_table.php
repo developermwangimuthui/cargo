@@ -15,8 +15,8 @@ class CreateCarrierWalletsTable extends Migration
     {
         Schema::create('carrier_wallets', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('carrier_id');
-            $table->foreign('carrier_id')->references('id')->on('carriers')->onDelete('cascade');
+            $table->uuid('carrier_wallets');
+            $table->foreign('carrier_wallets')->references('id')->on('carriers')->onDelete('cascade');
             $table->double('balance');
             $table->softDeletes();
             $table->timestamps();

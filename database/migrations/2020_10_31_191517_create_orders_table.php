@@ -28,13 +28,13 @@ class CreateOrdersTable extends Migration
             $table->string('truck_requirements')->nullable();
             $table->string('recipient_name')->nullable();
             $table->string('recipient_contact')->nullable();
-            $table->string('product_category')->nullable();
-            $table->string('product_type')->nullable();
+            $table->string('product_category_id')->nullable();
+            $table->string('product_type_id')->nullable();
             $table->string('product_weight')->nullable();
             $table->string('product_height')->nullable();
             $table->string('product_width')->nullable();
             $table->string('product_depth')->nullable();
-            $table->string('package_style')->nullable();
+            $table->string('package_style_id')->nullable();
             $table->string('product_value')->nullable();
             $table->string('carrying_Way')->nullable();
             $table->string('tip')->nullable();

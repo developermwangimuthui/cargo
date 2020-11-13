@@ -6,16 +6,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header"><i class="fa fa-table"></i>Product  Categories
+                    <div class="card-header"><i class="fa fa-table"></i>Product  Sizes
                         <a href="#" class="btn btn-info btn-round waves-effect waves-light m-1" data-toggle="modal"
-                            data-target="#categorymodal">Add Product Category</a>
+                            data-target="#categorymodal">Add Product Size</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="product_category_table" class="table table-bordered ">
+                            <table id="product_size_table" class="table table-bordered ">
                                 <thead>
 
-                                    <th>Product Category Name</th>
+                                    <th>Product Size</th>
                                     <th>Action</th>
 
                                 </thead>
@@ -25,7 +25,7 @@
                                 <tfoot>
 
 
-                                    <th>Product Category Name</th>
+                                    <th>Product Size</th>
                                     <th>Action</th>
 
                                 </tfoot>
@@ -45,7 +45,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"> Add Product Category</h5>
+                <h5 class="modal-title"> Add Product Size</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -54,9 +54,9 @@
                 <form id="category_add" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="title">Product Category Name</label>
+                        <label for="title">Product Size</label>
                         <input type="text" class="form-control form-control-rounded" id="title"
-                            placeholder="Enter Product Category " name="product_category">
+                            placeholder="Enter Product Category " name="product_size">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary shadow-primary btn-round px-5"><i
@@ -72,12 +72,12 @@
 <!-- Large Size Modal -->
 
 <script>
-    var table = $('#product_category_table').DataTable({
+    var table = $('#product_size_table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('product.category')}}",
+        ajax: "{{ route('product.size')}}",
         columns:[
-        {data: 'product_categories', name: 'product_categories'},
+        {data: 'product_sizes', name: 'product_sizes'},
         {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         columnDefs:[
@@ -86,13 +86,13 @@
 
         });
 
-   function productcategorydelete(product_category_id) {
+   function productsizedelete(product_size_id) {
     if (confirm("Do you want to delete this Product Category!")) {
         $.ajax({
-           url:'/product/category/destroy/',
+           url:'/product/size/destroy/',
            method:'delete',
            data:{
-               product_category_id:product_category_id,
+               product_size_id:product_size_id,
                  _token: "{{ csrf_token() }}",
            },
            success:function(data){
@@ -116,7 +116,7 @@
 
                      console.log(data.success);
                 }
-             $('#product_category_table').DataTable().ajax.reload();
+             $('#product_size_table').DataTable().ajax.reload();
            }
 
        });  } else {
@@ -131,7 +131,7 @@
         event.preventDefault();
         // console.log('aye');
         $.ajax({
-            url: "/product/category/store",
+            url: "/product/size/store",
             method: "POST",
             data: new FormData(this),
             contentType: false,
@@ -161,7 +161,7 @@
                      console.log(data.success);
                 }
                 $('#categorymodal').modal('hide');
-                $('#product_category_table').DataTable().ajax.reload();
+                $('#product_size_table').DataTable().ajax.reload();
             },
             error: function () {
             Lobibox.notify("error", {
