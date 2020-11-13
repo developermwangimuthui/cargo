@@ -15,7 +15,7 @@ class CreateTruckTypesTable extends Migration
     {
         Schema::create('truck_types', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('type');
+            $table->string('truck_types');
             $table->softDeletes();
             $table->timestamps();
         });

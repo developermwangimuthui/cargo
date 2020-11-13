@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTruckRequirementsTable extends Migration
+class CreateCarrierLengthsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTruckRequirementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('truck_requirements', function (Blueprint $table) {
+        Schema::create('carrier_lengths', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('requirement');
+            $table->string('carrier_lengths');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateTruckRequirementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('truck_requirements');
+        Schema::dropIfExists('carrier_lengths');
     }
 }
