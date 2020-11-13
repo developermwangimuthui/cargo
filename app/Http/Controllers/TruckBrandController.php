@@ -6,7 +6,7 @@ use App\Models\TruckBrand;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Http\Resources\TruckBrandResource;
 class TruckBrandController extends Controller
 {
     /**
@@ -40,9 +40,20 @@ class TruckBrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function apiIndex()
     {
-        //
+
+        $truck_brands = TruckBrand::all();
+
+        $truck_brands = TruckBrandResource::collection($truck_brands);
+        return response([
+            'error' => False,
+            'message' => 'Success',
+            'truck_brands' => $truck_brands
+        ], Response::HTTP_OK);
+
+
+
     }
 
     /**

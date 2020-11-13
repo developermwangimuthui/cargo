@@ -6,6 +6,7 @@ use App\Models\DrivingYear;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\DrivingYearsResource;
 
 class DrivingYearController extends Controller
 {
@@ -40,9 +41,27 @@ class DrivingYearController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function apiIndex()
     {
-        //
+
+        $driving_years = DrivingYear::all();
+        if (!empty($driving_years)) {
+
+        $driving_years = DrivingYearsResource::collection($driving_years);
+        return response([
+            'error' => False,
+            'message' => 'Success',
+            'driving_years' => $driving_years
+        ], Response::HTTP_OK);
+        } else {
+        return response([
+            'error' => true,
+            'message' => 'Failed',
+            'driving_years' => ''
+        ], Response::HTTP_OK);
+        }
+
+
     }
 
     /**

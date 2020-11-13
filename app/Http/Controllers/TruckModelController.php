@@ -7,6 +7,7 @@ use App\Models\TruckModel;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\TruckModelResource;
 
 class TruckModelController extends Controller
 {
@@ -31,7 +32,7 @@ class TruckModelController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     return '<a class="btn btn-outline-danger btn-round waves-effect waves-light name="delete" id="' . $data->id . '" onclick="truckmodeldelete(\'' . $data->id . '\')"><i class="icon-trash"></i>Delete</a>&nbsp;&nbsp;
-                    
+
 
                     ';
                 })
@@ -40,6 +41,21 @@ class TruckModelController extends Controller
         }
 
         return view('admin.truck_model.index',compact('truck_brands'));
+    }
+    public function apiIndex($brandId)
+    {
+// dd($brandId);
+        $truck_models = TruckModel::where('truck_brand_id',$brandId)->get();
+
+        $truck_models = TruckModelResource::collection($truck_models);
+        return response([
+            'error' => False,
+            'message' => 'Success',
+            'truck_models' => $truck_models
+        ], Response::HTTP_OK);
+
+
+
     }
 
     /**

@@ -4,6 +4,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\ProductSizeController;
+use App\Http\Controllers\ProductTypeController;
+use App\Http\Controllers\PackageStyleController;
+use App\Http\Controllers\TruckTypeController;
+use App\Http\Controllers\TruckSizeController;
+use App\Http\Controllers\DrivingYearController;
+use App\Http\Controllers\LicensePlateColorController;
+use App\Http\Controllers\TruckBrandController;
+use App\Http\Controllers\TruckModelController;
+use App\Http\Controllers\CarrierLengthController;
+use App\Http\Controllers\TruckRequirementController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,8 +45,17 @@ Route::prefix('v1')->group(function () {
         Route::post('/upload-order/{id}/photos', [OrderController::class,'uploadOrderPhotos']);
         Route::post('/match-sender-code', [OrderController::class,'matchSenderCode']);
         Route::post('/add-addition-notes', [OrderController::class,'addAdditionNotes']);
+
+    Route::get('/driving/year', [DrivingYearController::class,'apiIndex']);
+    Route::get('/license/plate/color', [LicensePlateColorController::class,'apiIndex']);
+    Route::get('/truck/brand', [TruckBrandController::class,'apiIndex']);
+    Route::get('/truck/model/{id}', [TruckModelController::class,'apiIndex']);
     });
     Route::group(['middleware' => 'auth:customers'], function () {
         Route::post('/customer-updateprofle', [UserAuthController::class,'updateProfile']);
     });
+
+
+
+
 });

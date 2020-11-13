@@ -54,6 +54,7 @@ class UserAuthController extends Controller
 
 
         $user->email = $request->email;
+        $user->password =Hash::make($request->password) ;
         if ($user->save()) {
             $digits = 4;
             $token = random_int(10 ** ($digits - 1), (10 ** $digits) - 1);

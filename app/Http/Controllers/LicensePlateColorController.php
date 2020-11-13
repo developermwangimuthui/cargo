@@ -6,6 +6,7 @@ use App\Models\LicensePlateColor;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\LicensePlateColorResource;
 class LicensePlateColorController extends Controller
 {
     /**
@@ -38,9 +39,20 @@ class LicensePlateColorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function apiIndex()
     {
-        //
+
+        $license_plate_color = LicensePlateColor::all();
+
+        $license_plate_color = LicensePlateColorResource::collection($license_plate_color);
+        return response([
+            'error' => False,
+            'message' => 'Success',
+            'license_plate_color' => $license_plate_color
+        ], Response::HTTP_OK);
+    
+
+
     }
 
     /**
